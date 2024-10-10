@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+    <link rel="stylesheet" href="./dist/styles.css" />
+    <script src="./dist/toast.umd.js"></script>
+  </head>
+  <body>
+    <button onclick="showToast()">Toast</button>
+    <button onclick="showToast2()">Long Text</button>
+  </body>
+  <script>
+    function showToast() {
+      LittleToast.showToast('hello');
+    }
+    function showToast2() {
+      LittleToast.showToast('hellohellohellohellohellohellohellohellohellohellohellohellohello');
+    }
+  </script>
+</html>
