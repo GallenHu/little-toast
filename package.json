@@ -1,6 +1,6 @@
 {
   "name": "little-toast",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A pure Javascript toast component.",
   "main": "dist/toast.esm.js",
   "module": "dist/toast.esm.js",
