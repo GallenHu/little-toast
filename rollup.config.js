@@ -2,7 +2,6 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
-import { dts } from 'rollup-plugin-dts';
 
 const input = 'src/index.ts';
 const external = []; // 如果有第三方库不想被打包进来，可以在这里列出它们的名字
@@ -13,7 +12,7 @@ const baseConfig = {
   plugins: [
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({ tsconfig: './tsconfig.json' }),
     postcss({
       // 抽取CSS到单独的文件中
       extract: 'styles.css',
@@ -51,13 +50,6 @@ configs.push({
     sourcemap: true,
     extend: true,
   },
-});
-
-// types definition
-configs.push({
-  input: 'src/index.d.ts',
-  output: [{ file: 'dist/toast.d.ts', format: 'es' }],
-  plugins: [dts()],
 });
 
 export default configs;

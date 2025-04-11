@@ -2,7 +2,14 @@
  * https://www.w3schools.com/howto/howto_js_snackbar.asp
  */
 import './styles.css';
-import { IToast, Options } from './index.d';
+
+export interface Options {
+  duration?: number;
+}
+
+export interface IToast {
+  show: (message: string, options?: Options) => void;
+}
 
 const DEFAULT_OPTIONS: Options = {
   duration: 3000,
@@ -18,7 +25,6 @@ export class Toast implements IToast {
 
   public show(message: string, options?: Options): void {
     const { duration } = Object.assign({ ...DEFAULT_OPTIONS }, options || {});
-    console.log(duration);
 
     this.element.textContent = message;
     document.body.appendChild(this.element);
