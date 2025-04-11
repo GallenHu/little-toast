@@ -2,8 +2,13 @@
  * https://www.w3schools.com/howto/howto_js_snackbar.asp
  */
 import './styles.css';
+import { IToast, Options } from './index.d';
 
-export class Toast {
+const DEFAULT_OPTIONS: Options = {
+  duration: 3000,
+};
+
+export class Toast implements IToast {
   private element: HTMLElement;
 
   constructor() {
@@ -11,22 +16,26 @@ export class Toast {
     this.element.className = 'little-toast';
   }
 
-  public show(message: string): void {
-    const duration = 3000;
+  public show(message: string, options?: Options): void {
+    const { duration } = Object.assign({ ...DEFAULT_OPTIONS }, options || {});
+    console.log(duration);
+
     this.element.textContent = message;
     document.body.appendChild(this.element);
     this.element.classList.add('show');
 
-    setTimeout(() => {
-      this.element.className = this.element.className.replace('show', '');
-    }, duration);
+    if (Number(duration) > 0) {
+      setTimeout(() => {
+        this.element.className = this.element.className.replace('show', '');
+      }, duration);
 
-    setTimeout(() => {
-      document.body.removeChild(this.element);
-    }, duration - 100);
+      setTimeout(() => {
+        document.body.removeChild(this.element);
+      }, (duration as number) - 100);
+    }
   }
 }
 
-export function showToast(message: string): void {
-  new Toast().show(message);
+export function showToast(message: string, options?: Options): void {
+  new Toast().show(message, options);
 }
